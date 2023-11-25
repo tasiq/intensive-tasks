@@ -1,11 +1,11 @@
 package com.walking.intensive.chapter1.task2;
 
 /**
- * РЈСЃР»РѕРІРёРµ: <a href="https://geometry-math.ru/homework/Java-house.html">СЃСЃС‹Р»РєР°</a>
+ * Условие: <a href="https://geometry-math.ru/homework/Java-house.html">ссылка</a>
  */
 public class Task2 {
     public static void main(String[] args) {
-//        Р”Р»СЏ СЃРѕР±СЃС‚РІРµРЅРЅС‹С… РїСЂРѕРІРµСЂРѕРє РјРѕР¶РµС‚Рµ РґРµР»Р°С‚СЊ Р»СЋР±С‹Рµ РёР·РјРµРЅРµРЅРёСЏ РІ СЌС‚РѕРј РјРµС‚РѕРґРµ
+//        Для собственных проверок можете делать любые изменения в этом методе
         int floorAmount = 4;
         int entranceAmount = 4;
 
@@ -15,47 +15,47 @@ public class Task2 {
     }
 
     static String getFlatLocation(int floorAmount, int entranceAmount, int flatNumber) {
-        //        РњРµСЃС‚Рѕ РґР»СЏ РІР°С€РµРіРѕ РєРѕРґР°
+        //        Место для вашего кода
 
-        //РїСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ СЌС‚Р°Р¶РµР№
+        //проверка на корректность этажей
         if (floorAmount < 1) {
-            return "Р’ РґРѕРјРµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅРµРµ 1 СЌС‚Р°Р¶Р°";
+            return "В доме не может быть менее 1 этажа";
         }
 
-        //РїСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ РєРѕР»РёС‡РµСЃС‚РІР° РїРѕРґСЉРµР·РґРѕРІ
+        //проверка на корректность количества подъездов
         if (entranceAmount < 1) {
-            return "Р’ РґРѕРјРµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РјРµРЅРµРµ 1 РїРѕРґСЉРµР·РґР°";
+            return "В доме не может быть менее 1 подъезда";
         }
 
-        final int FLATS_PER_FLOOR = 4; // РєРѕРЅСЃС‚Р°РЅС‚Р° РґР»СЏ РєРѕР»РёС‡РµСЃС‚РІР° РєРІР°СЂС‚РёСЂ РЅР° СЌС‚Р°Р¶Рµ
-        int flatAmmount = floorAmount * entranceAmount * FLATS_PER_FLOOR; // РІС‹С‡РёСЃР»РµРЅРёРµ РѕР±С‰РµРіРѕ РєРѕР»РёС‡РµСЃС‚РІР° РєРІР°СЂС‚РёСЂ
+        final int FLATS_PER_FLOOR = 4; // константа для количества квартир на этаже
+        int flatAmmount = floorAmount * entranceAmount * FLATS_PER_FLOOR; // вычисление общего количества квартир
 
-        //Р»РµРЅРёРІР°СЏ РїСЂРѕРІРµСЂРєР° РЅР° РЅР°Р»РёС‡РёРµ РєРІР°СЂС‚РёСЂС‹ РІ РґРѕРјРµ
+        //ленивая проверка на наличие квартиры в доме
         if (flatNumber < 1 || flatNumber > flatAmmount) {
-            return "Р’ РґРѕРјРµ РЅРµС‚ С‚Р°РєРѕР№ РєРІР°СЂС‚РёСЂС‹";
+            return "Такой квартиры не существует";
         }
 
-        int entranceNumber = (int) Math.ceil((double) flatNumber / (floorAmount * FLATS_PER_FLOOR)); // РІС‹С‡РёСЃР»РµРЅРёРµ РїРѕРґСЉРµР·РґР°. NB:РІРѕР·РјРѕР¶РЅРѕ, СЃСѓС‰РµcС‚РІСѓРµС‚ Р±РѕР»РµРµ РїСЂРѕСЃС‚РѕР№ СЃРїРѕСЃРѕР± РѕРєСЂСѓРіР»СЏС‚СЊ С‡Р°СЃС‚РЅРѕРµ РёРЅС‚РѕРІ РІ Р±РѕР»СЊС€СѓСЋ СЃС‚РѕСЂРѕРЅСѓ.
+        int entranceNumber = (int) Math.ceil((double) flatNumber / (floorAmount * FLATS_PER_FLOOR)); // вычисление подъезда. NB:возможно, сущеcтвует более простой способ округлять частное интов в большую сторону.
 
-        int floorNumber = (int) Math.ceil((((double) flatNumber - (floorAmount * FLATS_PER_FLOOR * (entranceNumber - 1))) / FLATS_PER_FLOOR)); // РІС‹С‡РёСЃР»РµРЅРёРµ СЌС‚Р°Р¶Р°, С‚РѕР¶Рµ С‡РµСЂРµР· РѕРґРЅРѕ РјРµСЃС‚Рѕ
+        int floorNumber = (int) Math.ceil((((double) flatNumber - (floorAmount * FLATS_PER_FLOOR * (entranceNumber - 1))) / FLATS_PER_FLOOR)); // вычисление этажа, тоже через одно место
 
         String destination;
-        //РЅР°РїСЂР°РІР»РµРЅРёРµ РєРІР°СЂС‚РёСЂС‹ РЅР° СЌС‚Р°Р¶Рµ
+        //направление квартиры на этаже
         switch (flatNumber % 4) {
             case 0:
-                destination = "СЃРїСЂР°РІР° РѕС‚ Р»РёС„С‚Р°, РІРїСЂР°РІРѕ";
+                destination = "справа от лифта, вправо";
                 break;
             case 1:
-                destination = "СЃР»РµРІР° РѕС‚ Р»РёС„С‚Р°, РІР»РµРІРѕ";
+                destination = "слева от лифта, влево";
                 break;
             case 2:
-                destination = "СЃР»РµРІР° РѕС‚ Р»РёС„С‚Р°, РІРїСЂР°РІРѕ";
+                destination = "слева от лифта, вправо";
                 break;
             default:
-                destination = "СЃРїСЂР°РІР° РѕС‚ Р»РёС„С‚Р°, РІР»РµРІРѕ";
+                destination = "справа от лифта, влево";
                 break;
         }
 
-        return flatNumber + " РєРІ - " + entranceNumber + " РїРѕРґСЉРµР·Рґ, " + floorNumber + " СЌС‚Р°Р¶, " + destination;
+        return flatNumber + " кв - " + entranceNumber + " подъезд, " + floorNumber + " этаж, " + destination;
     }
 }

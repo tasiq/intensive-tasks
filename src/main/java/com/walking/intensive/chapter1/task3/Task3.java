@@ -6,12 +6,16 @@ package com.walking.intensive.chapter1.task3;
 public class Task3 {
     public static void main(String[] args) {
         //Для собственных проверок можете делать любые изменения в этом методе
+        int years[] = {2023, 2020, 2000, 1996, 1900, 1800, 1600, 1200, 444, 500, 400, 0, -44, -100, -400};
 
+        for (int year : years
+        ) {
+            System.out.println("Год " + year + " - " + isLeap(year));
+        }
     }
 
     static boolean isLeap(int year) {
-        //Место для вашего кода
 
-        return false; // Заглушка. При реализации - удалить
+        return (year % 400 == 0 || (year % 100 != 0 & year % 4 == 0));
     }
 }
